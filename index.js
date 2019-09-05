@@ -2,7 +2,7 @@ const express = require("express");
 const path = require('path')
 const passport = require('passport');
 const session = require('express-session')
-const MongoDBStore = require('connect-mongodb-session')(session);
+// const MongoDBStore = require('connect-mongodb-session')(session);
 const flash = require('connect-flash')
 
 const auth = require('./auth')
@@ -10,10 +10,10 @@ const auth = require('./auth')
 
 const app = express();
 
-const store =  new MongoDBStore({
-  uri: process.env.dbUri,
-  collection:'session'
-})
+// const store =  new MongoDBStore({
+//   uri: process.env.dbUri,
+//   collection:'session'
+// })
 
 auth();
 app.use(
@@ -21,7 +21,7 @@ app.use(
     secret: 'kldskfmqkdlsmfqm',
     resave: true,
     saveUninitialized: true,
-    store
+    // store
   })
 );
 app.use(passport.initialize());
@@ -35,7 +35,7 @@ const PORT = process.env.PORT || 3001;
 app.set('view engine', 'pug');
 
 const restricAccess = (req, res, next) => {
-  if (!req.isAuthenticated()) return res.redirect("/auth");
+  if (!req.isAuthenticated()) return res.redirect("/login");
   next();
 };
 const isLogedIn = (req, res, next) => {

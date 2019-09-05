@@ -1,0 +1,17 @@
+doctype html
+html(lang="en")
+  head
+    meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1.0")
+    //- link(rel="stylesheet", href="/static/css/style.css")
+    title= title
+  body
+    .form-container
+      a(href="/") Home
+      h1 Login
+      form.form(action="/login", method="post")
+        if error.length
+          p= error
+        input#username(type="text", name="username" placeholder="User name" )
+        input#password(type="password", name="password", placeholder="Password")
+        input(type="submit", value="Login")
